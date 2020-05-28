@@ -1,0 +1,30 @@
+{
+  "name": "borschphp/requesthandler",
+  "description": "A simple PSR-15 Request Handler.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexandre DEBUSSCHERE",
+      "email": "zizilex@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "psr/http-server-handler": "^1",
+    "psr/http-server-middleware": "^1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8",
+    "laminas/laminas-diactoros": "2.3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Borsch\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BorschTest\\": "tests/"
+    }
+  }
+}

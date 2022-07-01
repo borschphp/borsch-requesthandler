@@ -5,8 +5,10 @@
 
 namespace Borsch\RequestHandler;
 
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\{
+    MiddlewareInterface,
+    RequestHandlerInterface
+};
 
 /**
  * Interface ApplicationRequestHandlerInterface

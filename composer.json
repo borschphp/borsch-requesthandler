@@ -5,17 +5,17 @@
   "authors": [
     {
       "name": "Alexandre DEBUSSCHERE",
-      "email": "zizilex@gmail.com"
+      "email": "alexandre.debusschere@hey.com"
     }
   ],
   "require": {
-    "php": "^7.2|^8.0",
+    "php": "^8.0",
     "psr/http-server-handler": "^1",
     "psr/http-server-middleware": "^1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8",
-    "laminas/laminas-diactoros": "2.8.0"
+    "phpunit/phpunit": "^9",
+    "laminas/laminas-diactoros": "^2"
   },
   "autoload": {
     "psr-4": {

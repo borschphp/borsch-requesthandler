@@ -5,8 +5,10 @@
 
 namespace Borsch\RequestHandler;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\{
+    ResponseInterface,
+    ServerRequestInterface
+};
 use Psr\Http\Server\MiddlewareInterface;
 use RuntimeException;
 use SplStack;
@@ -18,15 +20,13 @@ use SplStack;
 class RequestHandler implements ApplicationRequestHandlerInterface
 {
 
-    /** @var SplStack */
-    protected $stack;
-
     /**
      * App constructor.
      */
-    public function __construct()
-    {
-        $this->stack = new SplStack();
+    public function __construct(
+        protected ?SplStack $stack = null
+    ) {
+        $this->stack = $stack ?: new SplStack();
     }
 
     /**

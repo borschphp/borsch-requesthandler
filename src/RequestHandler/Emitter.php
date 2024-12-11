@@ -1,21 +1,13 @@
 <?php
-/**
- * @author debuss-a
- */
 
 namespace Borsch\RequestHandler;
 
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class Emitter
- * @package Borsch\RequestHandler
- */
 class Emitter
 {
 
     /**
-     * @param ResponseInterface $response
      * @link https://github.com/http-interop/response-sender/blob/master/src/functions.php
      */
     public function emit(ResponseInterface $response): void

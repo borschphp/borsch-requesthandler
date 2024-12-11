@@ -1,10 +1,8 @@
 <?php
-/**
- * @author debuss-a
- */
 
 namespace Borsch\RequestHandler;
 
+use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\{
     ResponseInterface,
     ServerRequestInterface
@@ -13,15 +11,11 @@ use Psr\Http\Server\MiddlewareInterface;
 use RuntimeException;
 use SplStack;
 
-/**
- * Class App
- * @package Borsch\RequestHandler
- */
-class RequestHandler implements ApplicationRequestHandlerInterface
+class RequestHandler implements RequestHandlerInterface
 {
 
     /**
-     * App constructor.
+     * @param SplStack<string>|null $stack
      */
     public function __construct(
         protected ?SplStack $stack = null
@@ -33,7 +27,7 @@ class RequestHandler implements ApplicationRequestHandlerInterface
      * @param MiddlewareInterface $middleware
      * @return $this
      */
-    public function middleware(MiddlewareInterface $middleware): ApplicationRequestHandlerInterface
+    public function middleware(MiddlewareInterface $middleware): self
     {
         $this->stack->push($middleware);
 
@@ -41,8 +35,7 @@ class RequestHandler implements ApplicationRequestHandlerInterface
     }
 
     /**
-     * @param array $middlewares
-     * @return $this
+     * @param MiddlewareInterface[] $middlewares
      */
     public function middlewares(array $middlewares): self
     {

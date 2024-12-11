@@ -1,7 +1,4 @@
 <?php
-/**
- * @author debuss-a
- */
 
 namespace BorschTest;
 
@@ -17,8 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 class RequestHandlerTest extends TestCase
 {
 
-    /** @var RequestHandler */
-    protected $handler;
+    protected RequestHandler $handler;
 
     public function setUp(): void
     {

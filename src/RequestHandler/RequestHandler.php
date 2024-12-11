@@ -2,20 +2,16 @@
 
 namespace Borsch\RequestHandler;
 
-use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Http\Message\{
-    ResponseInterface,
-    ServerRequestInterface
-};
+use Borsch\RequestHandler\Exception\RequestHandlerRuntimeException;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\MiddlewareInterface;
-use RuntimeException;
 use SplStack;
 
 class RequestHandler implements RequestHandlerInterface
 {
 
     /**
-     * @param SplStack<string>|null $stack
+     * @param SplStack<MiddlewareInterface>|null $stack
      */
     public function __construct(
         protected ?SplStack $stack = null
@@ -23,10 +19,6 @@ class RequestHandler implements RequestHandlerInterface
         $this->stack = $stack ?: new SplStack();
     }
 
-    /**
-     * @param MiddlewareInterface $middleware
-     * @return $this
-     */
     public function middleware(MiddlewareInterface $middleware): self
     {
         $this->stack->push($middleware);
@@ -46,16 +38,10 @@ class RequestHandler implements RequestHandlerInterface
         return $this;
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @return ResponseInterface
-     */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         if ($this->stack->isEmpty()) {
-            throw new RuntimeException(
-                'The middleware stack is empty and no ResponseInterface has been returned...'
-            );
+            throw RequestHandlerRuntimeException::emptyStack();
         }
 
         return $this->stack->shift()->process($request, $this);

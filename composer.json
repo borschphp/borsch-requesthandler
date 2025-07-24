@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Borsch\\": "src/"
+      "Borsch\\RequestHandler\\": "src/"
     }
   },
   "autoload-dev": {

@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Borsch\RequestHandler;
 
-use Borsch\RequestHandler\Exception\RequestHandlerRuntimeException;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\MiddlewareInterface;
 use SplStack;
+use function get_class, gettype, is_object;
 
 class RequestHandler implements RequestHandlerInterface
 {
@@ -44,6 +44,13 @@ class RequestHandler implements RequestHandlerInterface
             throw RequestHandlerRuntimeException::emptyStack();
         }
 
-        return $this->stack->shift()->process($request, $this);
+        $middleware = $this->stack->shift();
+        if (!$middleware instanceof MiddlewareInterface) {
+            throw RequestHandlerRuntimeException::invalidMiddleware(
+                (string)(is_object($middleware) ? get_class($middleware) : gettype($middleware))
+            );
+        }
+
+        return $middleware->process($request, $this);
     }
 }

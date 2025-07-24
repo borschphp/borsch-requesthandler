@@ -40,4 +40,4 @@ jobs:
         run:  ./vendor/bin/phpunit tests --testdox
 
       - name: Run static analysis
-        run: ./vendor/bin/phpstan analyse src --level 6 --no-progress --no-interaction
+        run: ./vendor/bin/phpstan analyse src --no-progress --no-interaction

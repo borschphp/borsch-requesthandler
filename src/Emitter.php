@@ -2,8 +2,7 @@
 
 namespace Borsch\RequestHandler;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\{ResponseInterface, StreamInterface};
 use function header, sprintf, ucwords;
 
 class Emitter implements EmitterInterface
@@ -12,13 +11,11 @@ class Emitter implements EmitterInterface
     /**
      * @link https://github.com/http-interop/response-sender/blob/master/src/functions.php
      */
-    public function emit(ResponseInterface $response): bool
+    public function emit(ResponseInterface $response): void
     {
         $this->emitHeaders($response);
         $this->emitStatusLine($response);
         $this->emitBody($response->getBody());
-
-        return true;
     }
 
     private function emitHeaders(ResponseInterface $response): void

@@ -11,7 +11,6 @@ interface EmitterInterface
      * Emits the given response.
      *
      * @param ResponseInterface $response The response to emit.
-     * @return bool Returns true on success, false on failure.
      */
     public function emit(ResponseInterface $response): void;
 }

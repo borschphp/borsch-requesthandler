@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Borsch\RequestHandler;
 
@@ -11,7 +11,7 @@ interface RequestHandlerInterface extends PsrRequestHandlerInterface
 {
 
     /**
-     * Add a middleware to the request handler.
+     * Add middleware to the request handler.
      * Must return itself to allow method chaining (if desired).
      */
     public function middleware(MiddlewareInterface $middleware): RequestHandlerInterface;
